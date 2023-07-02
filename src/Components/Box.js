@@ -7,7 +7,7 @@ function Box({index,setNumber}) {
         // {/* <div key={{index}} style={{marginTop:"50%",marginBottom:"50%",height:"5px",textAlign:"center",verticalAlign:"center"}}>
         // {index}
         // </div> */}
-        <div className="Box" onClick={()=>setNumber(index)}>
+        <div className="Box" onClick={setNumber}>
           {index}
         </div>
     // </button>
