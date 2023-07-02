@@ -10,30 +10,30 @@ function App() {
 
   const checkIfWon = () => {
     if(board[0]===board[1] && board[1]===board[2] && board[0]!==null){
-      alert(board[0]+" won");
+      return true;
     }
     else if(board[3]===board[4] && board[4]===board[5] && board[3]!==null){
-      alert(board[3]+" won");
+      return true;
     }
     else if(board[6]===board[7] && board[7]===board[8] && board[6]!==null){
-      alert(board[6]+" won");
+      return true;
     }
     else if(board[0]===board[3] && board[3]===board[6] && board[0]!==null){
-      alert(board[0]+" won");
+      return true;
     }
     else if(board[1]===board[4] && board[4]===board[7] && board[1]!==null){
-      alert(board[1]+" won");
+      return true;
     }
     else if(board[2]===board[5] && board[5]===board[8] && board[2]!==null){
-      alert(board[2]+" won");
+      return true;
     }
     else if(board[0]===board[4] && board[4]===board[8] && board[0]!==null){
-      alert(board[0]+" won");
+      return true;
     }
     else if(board[2]===board[4] && board[4]===board[6] && board[2]!==null){
-      alert(board[2]+" won");
-    }else{
       return true;
+    }else{
+      return false;
     }
   }
 
@@ -44,24 +44,23 @@ function App() {
   
   const setNumber = (index) => {
       // setBoard(board[index]=index);i
-      if(checkIfWon()===true){
-        setBoard(board.map((item,i)=>i===index?placeMark():item));
-        console.log(board[index]+" "+index);
-      } 
+      if(board[index]!==null || checkIfWon()){
+        return;
+      }
+      setBoard(board.map((item,i)=>i===index?placeMark():item));
+      // console.log(board[index]+" "+index);
   } 
 const boardChecker = () => {
-  if(checkIfWon()===true){
+  if(checkIfWon()===false){
     return <h1 style={{display:'flex',justifyContent:'center'}}>Player {turn?"X":"O"}'s Turn</h1>
   }else{
-    board.reduce((acc,curr)=>acc+curr,0)===9?
+    return board.reduce((acc,curr)=>acc+curr)===9?
     <div>
       <h1 style={{display:'flex',justifyContent:'center'}}>Game Over</h1>
-      alert("Game Over")
     </div>
     :
     <div>
-      <h1 style={{display:'flex',justifyContent:'center'}}>Game Over</h1>
-      alert("Game Over");
+      <h1 style={{display:'flex',justifyContent:'center'}}>{turn?"O":"X"} Wins</h1>
     </div>
   }
 }
@@ -83,6 +82,9 @@ const boardChecker = () => {
         <Box setNumber={()=>setNumber(6)} index={board[6]}/> 
         <Box setNumber={()=>setNumber(7)} index={board[7]}/> 
         <Box setNumber={()=>setNumber(8)} index={board[8]}/> 
+      </div>
+      <div className="Wrapper" style={{marginTop:"20px"}}>
+        <button className="btn btn-info col-4" style={{fontWeight:'bold', fontSize:'20px'}} onClick={()=>setBoard([...Array(9)].fill(null))}>Reset</button>
       </div>
   </React.Fragment>
 
