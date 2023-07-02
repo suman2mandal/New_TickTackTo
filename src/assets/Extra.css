@@ -1,0 +1,21 @@
+/* body{ */
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+.Wrapper{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.Box{
+    background-color: yellow;
+    height:100px;
+    width:100px;
+    display: inline-block;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
