@@ -52,21 +52,32 @@ function App() {
   } 
 const boardChecker = () => {
   if(checkIfWon()===false){
-    return <h1 style={{display:'flex',justifyContent:'center'}}>Player {turn?"X":"O"}'s Turn</h1>
+    return <h3 style={{display:'flex',justifyContent:'center'}}>Player {turn?"X":"O"}'s Turn</h3>
   }else{
-    return board.reduce((acc,curr)=>acc+curr)===9?
+    // if(board.map((item)=>item!==null).length===9){
+    console.log("in");
+    let check=true;
+    for(let i=0;i<9;i++){
+      if(board[i]===null){
+        check=false;
+        break;
+      }
+    }
+    return check?
     <div>
-      <h1 style={{display:'flex',justifyContent:'center'}}>Game Over</h1>
+      <h3 style={{display:'flex',justifyContent:'center'}}>Game Over</h3>
     </div>
+    // }else{
     :
     <div>
-      <h1 style={{display:'flex',justifyContent:'center'}}>{turn?"O":"X"} Wins</h1>
+      <h3 style={{display:'flex',justifyContent:'center'}}>{turn?"O":"X"} Wins</h3>
     </div>
+    // }
   }
 }
   return (
   <React.Fragment>
-
+      <h1 style={{display:'flex',justifyContent:'center'}}>TICK <div style={{color:'cyan',marginLeft:'1%',marginRight:'1%'}}> TACK</div> TO</h1>
       {boardChecker()}
       <div className="Wrapper">
         <Box setNumber={()=>setNumber(0)} index={board[0]}/> 
